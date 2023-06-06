@@ -1,6 +1,6 @@
-import Carousel from './Carousel'
 import SOCarousel from './SOCarousel'
 import './App.css'
+import Carousel from './Carousel'
 
 function App() {
   const testimonials = [
@@ -30,7 +30,8 @@ function App() {
   return (
     <>
       <h1>Carousel Problem</h1>
-      <SOCarousel testimonials={testimonials} />
+      {/* <SOCarousel testimonials={testimonials} /> */}
+      <Carousel testimonials={testimonials} />
     </>
   )
 }

@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
-export default function SOCarousel({ testimonials }) {
+export default function Carousel({ testimonials }) {
   let maxIndex = 2
 
   const [currentTestimonials, setCurrentTestimonials] = useState([
@@ -9,35 +9,30 @@ export default function SOCarousel({ testimonials }) {
     testimonials[maxIndex],
   ])
 
-  const currentTestimonialsRef = useRef(currentTestimonials)
-
   useEffect(() => {
     const interval = setInterval(() => {
-      if (
-        currentTestimonialsRef.current
-          .at(-1)
-          .localeCompare(testimonials.at(-1)) === 0
-      ) {
-        console.log('HERE')
+      console.log('ADD THREE')
+      maxIndex += 3
+      console.log(maxIndex)
+      if (maxIndex > testimonials.length) {
+        console.log('reached end of testimonials!')
         maxIndex = 2
-      } else {
-        console.log('ADD THREE')
-        maxIndex += 3
       }
-      currentTestimonialsRef.current = [
+
+      setCurrentTestimonials([
         testimonials[maxIndex - 2],
         testimonials[maxIndex - 1],
         testimonials[maxIndex],
-      ]
-
-      setCurrentTestimonials(currentTestimonialsRef.current)
+      ])
     }, 1000)
 
     return () => clearInterval(interval)
   }, [])
 
+  console.log(currentTestimonials)
+
   return (
-    <div className='carosel-container flex'>
+    <div className='carousel-container flex'>
       {currentTestimonials.map((testimonial) => (
         <div className='testimonial'>
           <p>{testimonial}</p>
